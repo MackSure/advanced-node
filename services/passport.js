@@ -1,5 +1,5 @@
 const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GitlabStrategy = require('passport-gitlab2').Strategy;
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
 
@@ -16,24 +16,24 @@ passport.deserializeUser((id, done) => {
 });
 
 passport.use(
-  new GoogleStrategy(
+  new GitlabStrategy(
     {
-      callbackURL: '/auth/google/callback',
-      clientID: keys.googleClientID,
-      clientSecret: keys.googleClientSecret,
+      callbackURL: '/auth/gitlab/callback',
+      clientID: keys.gitlabClientID,
+      clientSecret: keys.gitlabClientSecret,
       proxy: true
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        const existingUser = await User.findOne({ googleId: profile.id });
-        if (existingUser) {
-          return done(null, existingUser);
-        }
-        const user = await new User({
-          googleId: profile.id,
-          displayName: profile.displayName
-        }).save();
-        done(null, user);
+          const existingUser = await User.findOne({gitlabId: profile.id})
+          if (!existingUser) {
+              // we don't have a user record with this ID, make a new record;
+              const user = await new User({gitlabId: profile.id}).save();
+              return done(null, user);
+          }
+          ;
+          // we already have a record with the given profile ID;
+          done(null, existingUser);
       } catch (err) {
         done(err, null);
       }

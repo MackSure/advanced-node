@@ -2,15 +2,15 @@ const passport = require('passport');
 
 module.exports = app => {
   app.get(
-    '/auth/google',
-    passport.authenticate('google', {
-      scope: ['profile', 'email']
+    '/auth/gitlab',
+    passport.authenticate('gitlab', {
+      scope: ['api']
     })
   );
 
   app.get(
-    '/auth/google/callback',
-    passport.authenticate('google'),
+    '/auth/gitlab/callback',
+    passport.authenticate('gitlab'),
     (req, res) => {
       res.redirect('/blogs');
     }

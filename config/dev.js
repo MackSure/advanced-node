@@ -1,7 +1,6 @@
 module.exports = {
-  googleClientID:
-    '964808011168-29vqsooppd769hk90kjbjm5gld0glssb.apps.googleusercontent.com',
-  googleClientSecret: 'KnH-rZC23z4fr2CN4ISK4srN',
-  mongoURI: 'mongodb://readonly:password@ds063124.mlab.com:63124/blog_everyone',
-  cookieKey: '123123123'
+  gitlabClientID: 'dd91eb5b1ff8ba44627999055bd3de73837f3221a77fea9e9393ef1afdcf0b7e',
+  gitlabClientSecret: '829fcab132e9a1db303299304f4ea0959a19e326174a420fc2452a48b46d5847',
+  mongoURI: 'mongodb://ruzhan:ruzhan34128119@ds159110.mlab.com:59110/emaily-dev',
+  cookieKey: 'sljdkljfdssldlkjfdkldjlfsjghdkllsdjdsljdlsjdkdfhfdkdlskjs',
 };
